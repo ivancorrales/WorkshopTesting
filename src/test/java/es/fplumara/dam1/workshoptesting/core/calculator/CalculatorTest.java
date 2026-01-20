@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
 
@@ -34,5 +35,14 @@ public class CalculatorTest {
     public void normalizaNombre(String original, String resultadoEsperado) {
         String resultado = original.trim().toLowerCase();
         assertEquals(resultadoEsperado, resultado);
+    }
+
+    @Test
+    public void divisionEntera() {
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
+            Calculator calculator = new Calculator();
+            calculator.divide(4, 0);
+        });
+        assertEquals("División por 0 no está permitida", ex.getMessage());
     }
 }
