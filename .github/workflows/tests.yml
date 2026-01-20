@@ -9,6 +9,7 @@ on:
 
 jobs:
   test:
+    name: Maven test
     runs-on: ubuntu-latest
 
     steps:
